@@ -1,0 +1,8 @@
+env/
+.env
+db.sqlite3
+management/
+core/management/
+core/migrations/
+core/__pycache__/
+logis-new-1.0.0/

@@ -1,0 +1,121 @@
+.tracking-search .form-control {
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.tracking-search .btn-primary {
+  border-radius: 0;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.tracking-card {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 1.75rem;
+  color: #1a1a1a;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.tracking-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #6c757d;
+  margin-bottom: 0.25rem;
+}
+
+.tracking-number {
+  color: var(--accent-color, #ff6b2c);
+  font-weight: 700;
+}
+
+.tracking-value {
+  font-weight: 600;
+  color: #212529;
+}
+
+.tracking-meta {
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.tracking-status {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: #e9ecef;
+  color: #495057;
+}
+
+.tracking-status--in_transit,
+.tracking-status--out_for_delivery {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.tracking-status--delivered {
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+.tracking-status--on_hold {
+  background: #f8d7da;
+  color: #842029;
+}
+
+.tracking-alert {
+  background: #fff3cd;
+  color: #664d03;
+  border: 1px solid #ffecb5;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.tracking-timeline-item {
+  position: relative;
+  padding-left: 1.75rem;
+  padding-bottom: 1.25rem;
+}
+
+.tracking-timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.tracking-timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  top: 0.75rem;
+  bottom: 0;
+  width: 2px;
+  background: #dee2e6;
+}
+
+.tracking-timeline-item:last-child::before {
+  display: none;
+}
+
+.tracking-timeline-marker {
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: #adb5bd;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #dee2e6;
+}
+
+.tracking-timeline-item--active .tracking-timeline-marker {
+  background: var(--accent-color, #ff6b2c);
+  box-shadow: 0 0 0 2px rgba(255, 107, 44, 0.25);
+}

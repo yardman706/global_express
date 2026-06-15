@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Get a Quote | Global Express Flight</title>
+  <meta name="description" content="Request a free shipping quote from Global Express Flight. Tell us about your cargo and we'll get back to you with competitive rates.">
+
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+</head>
+
+<body class="get-a-quote-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Global Express Flight</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'track' %}">Track</a></li>
+          <li><a href="{% url 'get_quote' %}" class="active">Get a Quote</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="{% url 'get_quote' %}">Get a Quote</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title dark-background" data-aos="fade">
+      <div class="container position-relative">
+        <h1>Get a Quote</h1>
+        <p>Tell us about your shipment and we'll respond with a competitive rate tailored to your needs.</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">Get a Quote</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section id="get-a-quote" class="get-a-quote section">
+      <div class="container">
+        <div class="row g-0 justify-content-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-success mb-4" role="alert">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+
+            <form method="post" class="php-email-form">
+              {% csrf_token %}
+              <h3>Request a Quote</h3>
+              <p>Fill in your shipment details and contact information. Our team typically responds within one business day.</p>
+
+              {% if form.non_field_errors %}
+                <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+              {% endif %}
+
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  {{ form.departure_city }}
+                  {% if form.departure_city.errors %}<div class="text-danger small">{{ form.departure_city.errors }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                  {{ form.delivery_city }}
+                  {% if form.delivery_city.errors %}<div class="text-danger small">{{ form.delivery_city.errors }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                  {{ form.weight }}
+                  {% if form.weight.errors %}<div class="text-danger small">{{ form.weight.errors }}</div>{% endif %}
+                </div>
+                <div class="col-md-6">
+                  {{ form.dimensions }}
+                  {% if form.dimensions.errors %}<div class="text-danger small">{{ form.dimensions.errors }}</div>{% endif %}
+                </div>
+
+                <div class="col-lg-12">
+                  <h4>Your Contact Details</h4>
+                </div>
+
+                <div class="col-12">
+                  {{ form.name }}
+                  {% if form.name.errors %}<div class="text-danger small">{{ form.name.errors }}</div>{% endif %}
+                </div>
+                <div class="col-12">
+                  {{ form.email }}
+                  {% if form.email.errors %}<div class="text-danger small">{{ form.email.errors }}</div>{% endif %}
+                </div>
+                <div class="col-12">
+                  {{ form.phone }}
+                  {% if form.phone.errors %}<div class="text-danger small">{{ form.phone.errors }}</div>{% endif %}
+                </div>
+                <div class="col-12">
+                  {{ form.message }}
+                  {% if form.message.errors %}<div class="text-danger small">{{ form.message.errors }}</div>{% endif %}
+                </div>
+
+                <div class="col-12 text-center">
+                  <button type="submit">Get a Quote</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Global Express Flight</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

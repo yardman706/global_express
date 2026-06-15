@@ -1,0 +1,64 @@
+{% if tracking_number %}
+  {% if shipment %}
+    <div class="tracking-result" id="tracking-result" data-aos="fade-up">
+      <div class="tracking-card">
+        <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-3">
+          <div>
+            <p class="tracking-label mb-1">Tracking Number</p>
+            <h4 class="tracking-number mb-0">{{ shipment.tracking_number }}</h4>
+          </div>
+          <span class="tracking-status tracking-status--{{ shipment.status }}">{{ shipment.get_status_display }}</span>
+        </div>
+
+        <div class="row g-3 mb-4">
+          <div class="col-md-6">
+            <p class="tracking-label">Goods</p>
+            <p class="tracking-value mb-1">{{ shipment.goods_description }}</p>
+            <p class="tracking-meta mb-0">{{ shipment.quantity }} item{{ shipment.quantity|pluralize }} · {{ shipment.goods_weight }} kg</p>
+          </div>
+          <div class="col-md-6">
+            <p class="tracking-label">Value</p>
+            <p class="tracking-value mb-1">{{ shipment.goods_value }} GBP</p>
+          </div>
+          <div class="col-md-6">
+            <p class="tracking-label">Dimensions</p>
+            <p class="tracking-meta mb-0">{{ shipment.goods_height }} cm x {{ shipment.goods_width }} cm x {{ shipment.goods_length }} cm</p>
+          </div>
+          <div class="col-md-6">
+            <p class="tracking-label">Route</p>
+            <p class="tracking-value mb-1">{{ shipment.origin }} → {{ shipment.destination }}</p>
+            <p class="tracking-meta mb-0">From {{ shipment.sender_name }} to {{ shipment.recipient_name }}</p>
+          </div>
+          {% if shipment.estimated_delivery %}
+            <div class="col-12">
+              <p class="tracking-label">Estimated Delivery</p>
+              <p class="tracking-value mb-0">{{ shipment.estimated_delivery|date:"F j, Y" }}</p>
+            </div>
+          {% endif %}
+        </div>
+
+        <p class="tracking-label mb-2">Shipment History</p>
+        <ul class="tracking-timeline list-unstyled mb-0">
+          {% for event in shipment.events.all %}
+            <li class="tracking-timeline-item{% if forloop.first %} tracking-timeline-item--active{% endif %}">
+              <div class="tracking-timeline-marker"></div>
+              <div class="tracking-timeline-content">
+                <div class="d-flex flex-wrap justify-content-between gap-2">
+                  <strong>{{ event.get_status_display }}</strong>
+                  <span class="tracking-meta">{{ event.occurred_at|date:"M j, Y g:i A" }}</span>
+                </div>
+                <p class="tracking-meta mb-1">{{ event.location }}</p>
+                <p class="mb-0">{{ event.description }}</p>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  {% else %}
+    <div class="tracking-alert" data-aos="fade-up">
+      <i class="bi bi-exclamation-circle me-2"></i>
+      No shipment found for <strong>{{ tracking_number }}</strong>. Please check the number and try again.
+    </div>
+  {% endif %}
+{% endif %}

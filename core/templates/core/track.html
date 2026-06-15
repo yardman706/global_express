@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Track Shipment | Global Express Flight</title>
+  <meta name="description" content="Track your Global Express Flight shipment in real time. Enter your tracking number to view status, route, and delivery details.">
+
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/css/tracking.css' %}" rel="stylesheet">
+</head>
+
+<body class="track-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">Global Express Flight</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'track' %}" class="active">Track</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <a class="btn-getstarted" href="{% url 'get_quote' %}">Get a Quote</a>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <div class="page-title dark-background" data-aos="fade">
+      <div class="container position-relative">
+        <h1>Track Your Shipment</h1>
+        <p>Enter your tracking number below to view real-time status, route details, and delivery updates.</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li class="current">Track</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+
+            <form action="{% url 'track' %}" method="get" class="tracking-search d-flex align-items-stretch mb-4" data-aos="fade-up">
+              <input type="text" name="tracking" class="form-control form-control-lg" placeholder="Enter tracking number, e.g. GEF237" value="{{ tracking_number }}" required autofocus>
+              <button type="submit" class="btn btn-primary btn-lg px-4">Track</button>
+            </form>
+
+            {% include 'core/includes/tracking_result.html' %}
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Global Express Flight</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>
