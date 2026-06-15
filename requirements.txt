@@ -1,5 +1,6 @@
 Django==6.0.5
 asgiref==3.11.1
+dj-database-url==2.3.0
 django-crispy-forms==2.6
 gunicorn==23.0.0
 psycopg2-binary==2.9.10
